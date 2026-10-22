@@ -1,0 +1,193 @@
+TrustMed RAG: Project Plan
+1. What you’re building (in one line)
+
+An AI assistant that answers breast cancer research questions using published papers. It cites its sources, avoids retracted papers, shows how strong the evidence is, and flags any sentence it can’t back up.
+
+2. How RAG works (the core idea)
+Store: split research papers into small chunks, turn each chunk into numbers (an embedding), and save them in a vector database.
+Retrieve: when a user asks a question, find the chunks most similar to it.
+Generate: give those chunks plus the question to an LLM, which writes an answer using only that information, with citations.
+
+Your project adds three “trust” layers on top: a retraction check, evidence strength, and claim verification.
+
+3. Project requirements
+
+Functional (what it must do)
+
+Answer breast cancer research questions in plain English
+Cite the paper (title, year, link) behind each claim
+Exclude or flag retracted papers
+Show an evidence strength badge (strong / moderate / weak)
+Mark each sentence as supported ✅ or unsupported ⚠️
+Say “not enough evidence” instead of guessing
+Refuse personal medical advice and show a disclaimer
+
+Non-functional (how well it must do it)
+
+Answers in under about 10 seconds
+Free to build and run
+A live public demo anyone can try
+Measurable quality, with a results table comparing it against basic RAG
+
+Out of scope (keeping it finishable)
+
+Other cancer types (can be added later)
+Patient-facing diagnosis or treatment advice
+User accounts or logins
+4. What you need
+
+Hardware
+
+Your laptop is enough. Heavy work runs on Google Colab (free GPU).
+
+Accounts (all free)
+
+Account	What it’s for
+GitHub	Code and portfolio
+Google Colab	Running notebooks with a GPU
+Hugging Face	Hosting the live demo and models
+Groq	Free LLM API for generating answers (check current free limits)
+NCBI (PubMed) API key	Downloading papers faster (optional but recommended)
+Kaggle	Extra datasets if needed
+
+Data
+
+Dataset	What it’s for
+PubMed Central Open Access subset	The breast cancer papers your system searches
+Retraction Watch database (via Crossref)	Checking which papers are retracted
+MedQuAD	Medical questions for testing and evaluation
+
+Tools and libraries
+
+Job	Tool
+Language	Python
+RAG framework	LangChain or LlamaIndex (pick one; LangChain has more tutorials)
+Embeddings	sentence-transformers (general) and PubMedBERT (biomedical)
+Vector database	ChromaDB (easiest for beginners)
+LLM	Llama 3 via Groq; later a 4-bit local model
+Claim checking	A DeBERTa NLI model from Hugging Face
+Evaluation	RAGAS
+Backend	FastAPI
+Frontend	Streamlit (simplest)
+Packaging and deployment	Docker, Hugging Face Spaces
+5. Skills to learn, and where your course covers them
+Skill	Course section
+Using datasets in Colab	“How to use any dataset on Kaggle in Colab”
+What RAG is and how it works	“What is RAG?”
+Vector databases and semantic search	Movie search project (section 4)
+Chatting with research papers	Scholarly articles project (section 5): closest to yours, do this one first
+Evaluating LLMs	“Evaluation Methods for LLMs”
+Quantization and LoRA	Optimisation lecture and fine-tuning sections (for the optional local model)
+Publishing to Hugging Face	“Publish your model on Huggingface”
+
+Suggestion: watch the course’s “What is RAG?” lecture and the scholarly-articles project before starting Phase 1.
+
+6. Architecture
+User question
+   ↓
+Safety check (refuse personal medical advice)
+   ↓
+Retrieve chunks from ChromaDB
+   ↓
+Remove retracted papers  →  Rank by evidence strength
+   ↓
+LLM writes an answer with citations
+   ↓
+Claim verifier checks each sentence (✅ / ⚠️)
+   ↓
+Answer + citations + evidence badge + disclaimer
+7. Phases and deliverables
+Phase	Time	What you do	Deliverable
+0. Setup and learning	3–5 days	Create accounts, set up the GitHub repo, watch the course RAG sections	Repo created, course RAG sections done
+1. Data	1 week	Download about 2,000 breast cancer papers, clean them, split them into chunks	A clean dataset of chunks with metadata
+2. Basic RAG	1 week	Embeddings → ChromaDB → retrieve → LLM answer with citations	Working baseline in Colab
+3. Trust features	1–2 weeks	Retraction check, evidence strength, claim verification, safety layer	Full TrustMed pipeline
+4. Evaluation	1 week	Build a 100-question test set and compare baseline vs TrustMed	Results table and charts
+5. App and launch	1 week	Streamlit app, FastAPI, Docker, deploy to HF Spaces, README, LinkedIn post	Live demo and portfolio-ready repo
+
+Total: about 6–7 weeks part-time. Phase 2 is your first big milestone. Once basic RAG works, everything else builds on it.
+
+8. How you’ll measure success
+Metric	Meaning
+Retrieval recall	Did it find the right papers?
+Faithfulness (RAGAS)	Does the answer stick to the retrieved text?
+Unsupported-claim rate	Percentage of sentences not backed by a source
+Retracted-citation rate	Should be 0% for TrustMed
+
+The headline result for your CV and LinkedIn will look like: “Reduced unsupported claims from X% to Y% compared to standard RAG.”
+
+9. Risks and how to handle them
+Risk	Plan
+Too much to learn at once	Finish Phase 2 before touching any trust features
+Groq free limits run out	Switch to another free API or a small local model
+Few retracted breast cancer papers in your sample	Add some deliberately for testing
+Medical safety	Researcher-focused, with a clear disclaimer and refusal of personal advice
+10. Final portfolio deliverables
+Public GitHub repo with a clear README, architecture diagram and results
+Live demo on Hugging Face Spaces
+A short demo video or GIF
+2–3 LinkedIn posts about what you built and learned
+Updated LinkedIn headline and skills (RAG, LLMs, LangChain, Vector Databases, Healthcare AI)
+
+
+
+
+
+
+
+
+Here’s the full list of technologies for TrustMed RAG, grouped by what they do.
+
+Language and environment
+
+Python
+Jupyter / Google Colab (free GPU)
+Git and GitHub
+Virtual environment (venv or conda)
+
+Data sources
+5. PubMed Central Open Access (via NCBI E-utilities and BioC API)
+6. Retraction Watch database (via Crossref)
+7. MedQuAD (evaluation questions)
+
+Data processing
+8. Requests (calling the APIs)
+9. Pandas (handling tables and metadata)
+
+Embeddings and vector database
+10. sentence-transformers (general embedding model)
+11. PubMedBERT (biomedical embedding model)
+12. NumPy (for your from-scratch vector search exercise)
+13. ChromaDB (your vector database)
+
+LLM and RAG pipeline
+14. LangChain (connecting retrieval and the LLM)
+15. Groq API with Llama 3 (generating answers)
+16. Hugging Face Transformers (loading models)
+17. A DeBERTa NLI model (claim verification)
+
+Evaluation
+18. RAGAS (faithfulness and relevance metrics)
+19. Matplotlib (results charts)
+
+App and deployment
+20. FastAPI (backend API)
+21. Streamlit (frontend app)
+22. Docker (packaging)
+23. Hugging Face Spaces (live demo hosting)
+
+Optional extra (local model)
+24. bitsandbytes or llama.cpp (4-bit quantized Llama/Mistral)
+
+That’s 23 core technologies plus 1 optional.
+
+For your CV and LinkedIn, group them like this:
+Python, LLMs, RAG, LangChain, ChromaDB (vector databases), sentence-transformers, PubMedBERT, Hugging Face Transformers, NLI, RAGAS, FastAPI, Streamlit, Docker, Hugging Face Spaces, Groq/Llama 3
+
+
+
+
+
+
+************* missing skill for me in this project, i can do later **************************
+Knowledge of prompt engineering and retrieval augmented generation (RAG) and experience with advanced AI tools such as ChatGPT Enterprise and Microsoft Copilot, Azure AI Foundry.
