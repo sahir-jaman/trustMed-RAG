@@ -191,3 +191,54 @@ Python, LLMs, RAG, LangChain, ChromaDB (vector databases), sentence-transformers
 
 ************* missing skill for me in this project, i can do later **************************
 Knowledge of prompt engineering and retrieval augmented generation (RAG) and experience with advanced AI tools such as ChatGPT Enterprise and Microsoft Copilot, Azure AI Foundry.
+
+
+
+
+Section 4 – Vector database (almost done)
+
+Run the 2 search tests (normal search + retraction filter)
+Download chroma_db into dataset/ on your laptop
+Save the notebook into notebooks/ and push it to GitHub
+
+Section 5 – Baseline RAG
+
+Get a free Groq API key
+Write retriever.py, prompts.py, llm.py and pipeline.py
+Test 10 questions and save the answers
+Freeze a copy as the baseline
+
+Section 6 – Trust features (the biggest section, built one at a time)
+
+Safety layer: politely refuse personal medical-advice questions
+Query rewriting: turn plain words into medical terms
+Retraction filter and warning
+Evidence re-ranking and strong / moderate / weak badges
+“Not enough evidence” rule
+Claim checker: mark each sentence ✅ or ⚠️
+
+Section 7 – Evaluation
+
+Download MedQuAD and build ~100 test questions
+Run the baseline and TrustMed on every question
+Measure faithfulness, recall, unsupported claims, retracted citations and speed
+Make the results table and charts, and write down why failures happened
+
+Section 8 – App
+
+FastAPI backend (/ask and /health)
+Streamlit front end with a question box, badges, citation cards and a disclaimer
+Clickable example questions and error handling
+
+Section 9 – Deployment
+
+Dockerfile
+Upload chroma_db to Hugging Face
+Deploy to Hugging Face Spaces and test on phone and laptop
+
+Section 10 – Launch
+
+Full README with a diagram, results table and demo GIF
+2-minute demo video
+LinkedIn update and 2–3 posts
+Add the project to your CV

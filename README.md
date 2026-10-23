@@ -32,3 +32,7 @@ python scripts/04_make_chunks.py         # ~400-word overlapping chunks
 ```
 
 Current dataset: 5,319 papers → 69,282 chunks (13 retracted papers flagged).
+
+
+baseline question 8 issue: 
+![alt text](image.png)
