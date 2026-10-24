@@ -67,6 +67,7 @@ class TrustMedPipeline:
             "badge": BADGE[c["evidence_level"]],
             "retracted": c["retracted"],
             "url": f"https://pubmed.ncbi.nlm.nih.gov/{c['pmid']}/",
+            "text": c["text"],
         } for i, c in enumerate(chunks, start=1)]
 
         return {"question": question, "search_query": search_query, "answer": answer,
