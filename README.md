@@ -1,3 +1,13 @@
+---
+title: TrustMed
+emoji: 🩺
+colorFrom: green
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # TrustMed RAG
 
 A trustworthy medical research assistant for breast cancer. It answers questions

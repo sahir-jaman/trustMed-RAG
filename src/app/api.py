@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from groq import RateLimitError
 from trustmed.pipeline import TrustMedPipeline
+from app.checkORdownload_db import ensure_db
 
 pipeline = None
 
@@ -11,6 +12,7 @@ pipeline = None
 @asynccontextmanager
 async def lifespan(app):
     global pipeline
+    ensure_db()  # download the database if it isn't here yet
     pipeline = TrustMedPipeline()      # load the models ONCE, when the server starts
     yield
 
