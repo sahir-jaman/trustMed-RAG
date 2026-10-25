@@ -11,7 +11,7 @@ WORKDIR /home/user/app
 
 # Install packages first.
 # PyTorch comes from its CPU-only download page, so the GPU parts are skipped.
-COPY --chown=user requirements-app.txt .
+COPY --chown=user requirements-dev.txt .
 RUN pip install --no-cache-dir torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu \
  && pip install --no-cache-dir -r requirements-dev.txt
 
