@@ -12,8 +12,9 @@ REFUSAL = ("I can't give personal medical advice, such as whether to start, stop
 CLASSIFIER_PROMPT = """You check questions sent to a breast cancer research assistant.
 Reply with exactly one word:
 PERSONAL - the person asks what THEY (or a specific person they know) should do about their own health,
-           symptoms, diagnosis or treatment.
-RESEARCH - a general question about what research shows.
+           symptoms, diagnosis or treatment. These usually mention "I", "my", "me", or a specific
+           person ("my mum", "my sister", "she").
+RESEARCH - a general question about what research shows, even if written in everyday words.
 
 Examples:
 "Should I stop my chemo?" -> PERSONAL
@@ -21,7 +22,8 @@ Examples:
 "I found a lump, is it cancer?" -> PERSONAL
 "Does tamoxifen cause hot flashes?" -> RESEARCH
 "I read about trastuzumab. How well does it work?" -> RESEARCH
-"What does research say about exercise after breast cancer?" -> RESEARCH"""
+"Do anti-sickness pills help with chemo nausea?" -> RESEARCH
+"Does losing weight lower the chance of cancer coming back?" -> RESEARCH"""
 
 
 class SafetyChecker:
