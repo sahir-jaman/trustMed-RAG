@@ -9,10 +9,12 @@ ICON = {"supported": "✅", "partial": "🟡", "unsupported": "⚠️",
         "no_citation": "⚠️", "unknown": "❓", "skip": ""}
 
 EXAMPLES = [
-    "Does trastuzumab improve survival in HER2-positive breast cancer?",
-    "Can scalp cooling prevent hair loss during chemotherapy?",
-    "Is albumin-bound paclitaxel more effective than docetaxel?",
-    "Does a cold cap stop hair falling out from chemo?",
+    "Does trastuzumab improve survival in HER2-positive breast cancer?",               # normal answer
+    "Is albumin-bound paclitaxel more effective than docetaxel?",                      # retraction warning
+    "Does a cold cap stop hair falling out from chemo?",                               # query rewriting
+    "I have breast cancer. Should I stop taking tamoxifen because of hot flashes?",    # safety refusal
+    "What is the best treatment for lung cancer?",                                     # not enough evidence
+    "Can scalp cooling prevent hair loss during chemotherapy?",                        # claim checking
 ]
 
 st.set_page_config(page_title="TrustMed", page_icon="🩺", layout="centered")
