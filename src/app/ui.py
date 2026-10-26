@@ -20,11 +20,13 @@ EXAMPLES = [
 st.set_page_config(page_title="TrustMed", page_icon="🩺", layout="centered")
 st.markdown("""
 <style>
+
 html { font-size: 17px; }                       /* all text a little bigger */
 p, li { line-height: 1.7; }                     /* more comfortable reading */
 .stTextInput input { font-size: 1.05rem; padding: 0.7rem 0.9rem; }   /* bigger question box */
 .stButton button { border-radius: 999px; }      /* rounded buttons */
 .block-container, [data-testid="stMainBlockContainer"] { padding-top: 1.7rem !important; }
+
 </style>
 """, unsafe_allow_html=True)
 
