@@ -1,4 +1,14 @@
-
+---
+title: TrustMed
+emoji: 🩺
+colorFrom: green
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+license: mit
+short_description: Breast cancer research Q&A with retraction & claim checks
+---
 
 <div align="center">
 
